@@ -3,14 +3,17 @@
 import os
 from urllib import parse
 
-def get_all_variables():
-    pass
+def get_all_variables(url
+    return {**get_env(), **get_from_url(url)}
 
 def get_env():
     return os.environ;
 
 
 def get_from_url(url):
+    if "?" not in url:
+        return {}
+    
     return dict(_get_from_url_generator(url))
 
 def _get_from_url_generator(url):
@@ -28,10 +31,4 @@ def _get_from_url_generator(url):
 
 def _url_decode(url):
     return parse.unquote(url)
-
-params = get_from_url("index?a=x&b=y&c=z")
-print(params["b"])
-
-for p in params:
-    print(p)
 
